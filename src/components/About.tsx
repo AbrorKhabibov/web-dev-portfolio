@@ -8,7 +8,7 @@ export const About: React.FC = () => {
 
   return (
     <section className="py-20 relative" style={{ backgroundColor: theme.colors.primary.bg }}>
-      <AnimatedBackground variant="particles" />
+      <AnimatedBackground variant="grid" />
       
       <div className="container mx-auto px-8 relative z-10">
         <div className="text-center mb-16">
@@ -51,7 +51,7 @@ export const About: React.FC = () => {
                   Hi, I'm <span style={{ color: theme.colors.accent.primary }}>Abror Khabibov</span>
                 </h3>
                 <p className="text-lg leading-relaxed" style={{ color: theme.colors.neutral.text }}>
-                  A passionate full-stack developer with over 3 years of experience creating 
+                  A passionate full-stack developer with over 4 years of experience creating 
                   beautiful and functional web applications. I specialize in modern JavaScript 
                   frameworks and love turning complex problems into simple, elegant solutions.
                 </p>
@@ -109,14 +109,14 @@ export const About: React.FC = () => {
                         className="w-2 h-2 rounded-full mr-3"
                         style={{ backgroundColor: theme.colors.accent.primary }}
                       ></span>
-                      <span style={{ color: theme.colors.neutral.textSecondary }}>AWS & Docker</span>
+                      <span style={{ color: theme.colors.neutral.textSecondary }}>WordPress</span>
                     </div>
                     <div className="flex items-center">
                       <span 
                         className="w-2 h-2 rounded-full mr-3"
                         style={{ backgroundColor: theme.colors.accent.hover }}
                       ></span>
-                      <span style={{ color: theme.colors.neutral.textSecondary }}>UI/UX Design</span>
+                      <span style={{ color: theme.colors.neutral.textSecondary }}>Hosting</span>
                     </div>
                   </div>
                 </div>
@@ -134,25 +134,6 @@ export const About: React.FC = () => {
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.backgroundColor = theme.colors.button.primary.bg;
-                  }}
-                >
-                  <span className="mr-2">📄</span>
-                  Download CV
-                </button>
-                <button 
-                  className="border-2 px-6 py-3 rounded-lg transition-colors duration-300 flex items-center"
-                  style={{ 
-                    borderColor: theme.colors.accent.primary,
-                    color: theme.colors.accent.primary,
-                    backgroundColor: 'transparent'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = theme.colors.accent.primary;
-                    e.currentTarget.style.color = theme.colors.primary.bg;
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'transparent';
-                    e.currentTarget.style.color = theme.colors.accent.primary;
                   }}
                 >
                   <span className="mr-2">💬</span>

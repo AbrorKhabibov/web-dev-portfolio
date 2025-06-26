@@ -2,7 +2,7 @@ import React from 'react';
 import { useTheme } from '../contexts/ThemeContext';
 
 interface AnimatedBackgroundProps {
-  variant?: 'geometric' | 'particles' | 'waves';
+  variant?: 'geometric' | 'particles' | 'waves' | 'grid';
 }
 
 export const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ variant = 'geometric' }) => {
@@ -24,7 +24,7 @@ export const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ variant 
         
         {/* Medium squares */}
         <div 
-          className="absolute w-32 h-32 opacity-10 animate-bounce"
+          className="absolute w-32 h-32 opacity-25 animate-bounce"
           style={{ 
             backgroundColor: theme.colors.accent.hover,
             top: '60%',
@@ -35,7 +35,7 @@ export const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ variant 
         />
         
         <div 
-          className="absolute w-24 h-24 rounded-full opacity-8 animate-ping"
+          className="absolute w-24 h-24 rounded-full opacity-15 animate-ping"
           style={{ 
             backgroundColor: theme.colors.accent.primary,
             bottom: '20%',
@@ -46,7 +46,7 @@ export const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ variant 
         
         {/* Small floating elements */}
         <div 
-          className="absolute w-16 h-16 opacity-6"
+          className="absolute w-16 h-16 opacity-12"
           style={{ 
             backgroundColor: theme.colors.accent.hover,
             top: '30%',
@@ -57,7 +57,7 @@ export const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ variant 
         />
         
         <div 
-          className="absolute w-20 h-20 rounded-full opacity-4"
+          className="absolute w-20 h-20 rounded-full opacity-12"
           style={{ 
             backgroundColor: theme.colors.accent.primary,
             top: '70%',
@@ -89,6 +89,89 @@ export const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ variant 
     );
   }
 
+  if (variant === 'waves') {
+    return (
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Animated waves */}
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(45deg, transparent 30%, ${theme.colors.accent.primary}10 50%, transparent 70%)`,
+            animation: 'wave-move 8s ease-in-out infinite'
+          }}
+        />
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(-45deg, transparent 40%, ${theme.colors.accent.hover}08 60%, transparent 80%)`,
+            animation: 'wave-move 12s ease-in-out infinite reverse'
+          }}
+        />
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: `radial-gradient(circle at 20% 50%, ${theme.colors.accent.primary}15 20%, transparent 50%)`,
+            animation: 'wave-pulse 10s ease-in-out infinite'
+          }}
+        />
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: `radial-gradient(circle at 80% 30%, ${theme.colors.accent.hover}12 15%, transparent 40%)`,
+            animation: 'wave-pulse 14s ease-in-out infinite reverse'
+          }}
+        />
+      </div>
+    );
+  }
+
+  if (variant === 'grid') {
+    return (
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
+        {/* Animated grid pattern */}
+        <div 
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `
+              linear-gradient(${theme.colors.accent.primary}40 1px, transparent 4px),
+              linear-gradient(90deg, ${theme.colors.accent.primary}40 1px, transparent 4px)
+            `,
+            backgroundSize: '60px 60px',
+            animation: 'grid-move 20s linear infinite'
+          }}
+        />
+        
+        {/* Moving grid overlay */}
+        <div 
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `
+              linear-gradient(${theme.colors.accent.hover}30 1px, transparent 1px),
+              linear-gradient(90deg, ${theme.colors.accent.hover}30 1px, transparent 1px)
+            `,
+            backgroundSize: '40px 40px',
+            animation: 'grid-move-reverse 15s linear infinite'
+          }}
+        />
+        
+        {/* Floating dots on grid intersections */}
+        {[...Array(8)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-2 h-2 rounded-full"
+            style={{
+              backgroundColor: theme.colors.accent.primary,
+              left: `${15 + (i * 12)}%`,
+              top: `${20 + (i * 8)}%`,
+              animation: `dot-glow ${2 + i * 0.5}s ease-in-out infinite`,
+              animationDelay: `${i * 0.8}s`
+            }}
+          />
+        ))}
+      </div>
+    );
+  }
+
   return null;
 };
 
@@ -111,6 +194,55 @@ const animationStyles = `
   50% {
     transform: translateY(-30px) scale(1.2);
     opacity: 0.4;
+  }
+}
+
+@keyframes wave-move {
+  0%, 100% {
+    transform: translateX(-50px) translateY(-25px) rotate(0deg);
+  }
+  50% {
+    transform: translateX(50px) translateY(25px) rotate(180deg);
+  }
+}
+
+@keyframes wave-pulse {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+    opacity: 0.1;
+  }
+}
+
+@keyframes grid-move {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(60px, 60px);
+  }
+}
+
+@keyframes grid-move-reverse {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-40px, -40px);
+  }
+}
+
+@keyframes dot-glow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.8;
   }
 }
 `;
