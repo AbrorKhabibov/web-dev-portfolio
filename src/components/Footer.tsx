@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useTheme } from '../contexts/ThemeContext';
 
 export const Footer: React.FC = () => {
@@ -127,8 +128,8 @@ export const Footer: React.FC = () => {
               </h4>
               <ul className="space-y-2">
                 <li>
-                  <a 
-                    href="/" 
+                  <Link 
+                    to="/" 
                     className="transition-colors duration-200"
                     style={{ color: theme.colors.neutral.text }}
                     onMouseEnter={(e) => {
@@ -139,11 +140,11 @@ export const Footer: React.FC = () => {
                     }}
                   >
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a 
-                    href="/my-work" 
+                  <Link 
+                    to="/my-work" 
                     className="transition-colors duration-200"
                     style={{ color: theme.colors.neutral.text }}
                     onMouseEnter={(e) => {
@@ -154,11 +155,11 @@ export const Footer: React.FC = () => {
                     }}
                   >
                     My Work
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a 
-                    href="/services" 
+                    href="/#services" 
                     className="transition-colors duration-200"
                     style={{ color: theme.colors.neutral.text }}
                     onMouseEnter={(e) => {
@@ -173,7 +174,7 @@ export const Footer: React.FC = () => {
                 </li>
                 <li>
                   <a 
-                    href="/contact" 
+                    href="/#contact" 
                     className="transition-colors duration-200"
                     style={{ color: theme.colors.neutral.text }}
                     onMouseEnter={(e) => {
@@ -225,8 +226,8 @@ export const Footer: React.FC = () => {
               </p>
             </div>
             <div className="flex space-x-6">
-              <a 
-                href="/privacy" 
+              <Link 
+                to="/privacy" 
                 className="text-sm transition-colors duration-200"
                 style={{ color: theme.colors.neutral.text }}
                 onMouseEnter={(e) => {
@@ -237,9 +238,9 @@ export const Footer: React.FC = () => {
                 }}
               >
                 Privacy Policy
-              </a>
-              <a 
-                href="/terms" 
+              </Link>
+              <Link 
+                to="/terms" 
                 className="text-sm transition-colors duration-200"
                 style={{ color: theme.colors.neutral.text }}
                 onMouseEnter={(e) => {
@@ -250,7 +251,7 @@ export const Footer: React.FC = () => {
                 }}
               >
                 Terms of Service
-              </a>
+              </Link>
             </div>
           </div>
         </div>

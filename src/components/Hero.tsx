@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import laptop_phone from '../assets/laptop-phone.png';
 import { useTheme } from '../contexts/ThemeContext';
 import { AnimatedBackground } from './AnimatedBackground';
@@ -37,7 +38,7 @@ export const Hero = () => {
                             Whether you're launching or leveling up, 
                             I'll build a site that works hard for your business.
                         </p>
-                        <a href='/my-work'>
+                            <Link to="/my-work">
                             <button 
                                 className="px-8 py-4 rounded-lg text-lg font-semibold transition-colors duration-300"
                                 style={{ 
@@ -53,7 +54,7 @@ export const Hero = () => {
                             >
                                 View My Work
                             </button>
-                        </a>
+                            </Link>
                     </div>
 
                     {/* Right side - Image */}
