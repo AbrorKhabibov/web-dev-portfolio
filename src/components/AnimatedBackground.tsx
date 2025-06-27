@@ -133,8 +133,8 @@ export const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ variant 
           className="absolute inset-0"
           style={{
             backgroundImage: `
-              linear-gradient(${theme.colors.accent.primary}40 1px, transparent 4px),
-              linear-gradient(90deg, ${theme.colors.accent.primary}40 1px, transparent 4px)
+              linear-gradient(${theme.colors.accent.primary}60 1px, transparent 1px),
+              linear-gradient(90deg, ${theme.colors.accent.primary}60 1px, transparent 1px)
             `,
             backgroundSize: '60px 60px',
             animation: 'grid-move 20s linear infinite'
@@ -146,8 +146,8 @@ export const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ variant 
           className="absolute inset-0"
           style={{
             backgroundImage: `
-              linear-gradient(${theme.colors.accent.hover}30 1px, transparent 1px),
-              linear-gradient(90deg, ${theme.colors.accent.hover}30 1px, transparent 1px)
+              linear-gradient(${theme.colors.accent.hover}80 1px, transparent 1px),
+              linear-gradient(90deg, ${theme.colors.accent.hover}80 1px, transparent 1px)
             `,
             backgroundSize: '40px 40px',
             animation: 'grid-move-reverse 15s linear infinite'

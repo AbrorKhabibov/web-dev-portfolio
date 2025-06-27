@@ -1,6 +1,7 @@
 import { useTheme } from '../contexts/ThemeContext';
 import { ThemeToggle } from './ThemeToggle';
 import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 interface NavbarProps {
     menuOpen: boolean;
@@ -10,11 +11,12 @@ interface NavbarProps {
 export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
     const { theme } = useTheme();
     const [isScrolled, setIsScrolled] = useState(false);
+    const location = useLocation();
     
     useEffect(() => {
         const handleScroll = () => {
             const scrollTop = window.scrollY;
-            setIsScrolled(scrollTop > 100); // Trigger after 100px scroll
+            setIsScrolled(scrollTop > 100);
         };
 
         window.addEventListener('scroll', handleScroll);
@@ -32,57 +34,131 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
                 style={{ backgroundColor: theme.colors.secondary.bg }}
             >
                 <div className="max-w-5xl mx-auto flex justify-between items-center px-8">
-                    <div 
-                        className="text-3xl font-bold"
-                        style={{ color: theme.colors.secondary.text }}
-                    >
-                        <img src="/logo.png" alt="Logo" className="inline-block h-8" />
-                        d<span style={{ color: theme.colors.accent.primary }}>web</span>
+                    <div className="text-3xl font-bold">
+                        <Link 
+                            to="/" 
+                            className="flex items-center space-x-2 transition-all duration-300"
+                            style={{ color: theme.colors.secondary.text }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.textShadow = `
+                                    0 0 5px ${theme.colors.accent.primary},
+                                    0 0 10px ${theme.colors.accent.primary},
+                                    0 0 15px ${theme.colors.accent.primary},
+                                    0 0 20px ${theme.colors.accent.primary},
+                                    0 0 35px ${theme.colors.accent.primary},
+                                    0 0 40px ${theme.colors.accent.primary}
+                                `;
+                                e.currentTarget.style.transform = 'scale(1.05)';
+                                e.currentTarget.style.color = theme.colors.accent.primary;
+                                
+                                const img = e.currentTarget.querySelector('img');
+                                if (img) {
+                                    img.style.filter = `
+                                        brightness(1.2)
+                                        drop-shadow(0 0 5px ${theme.colors.accent.primary})
+                                        drop-shadow(0 0 10px ${theme.colors.accent.primary})
+                                        drop-shadow(0 0 15px ${theme.colors.accent.primary})
+                                        drop-shadow(0 0 20px ${theme.colors.accent.primary})
+                                    `;
+                                }
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.textShadow = 'none';
+                                e.currentTarget.style.transform = 'scale(1)';
+                                e.currentTarget.style.color = theme.colors.secondary.text;
+                                
+                                const img = e.currentTarget.querySelector('img');
+                                if (img) {
+                                    img.style.filter = 'none';
+                                }
+                            }}
+                        >
+                            <img 
+                                src="/logo.png" 
+                                alt="Logo" 
+                                className="inline-block h-8 transition-all duration-300" 
+                            />
+                            d<span style={{ color: theme.colors.accent.primary }}>web</span>
+                        </Link>
                     </div>
                     
                     {/* Desktop Menu */}
                     <div className="hidden md:flex items-center space-x-8">
                         <ul className="flex space-x-16">
                             <li>
-                                <a 
-                                    href="/" 
-                                    className="transition-colors duration-200 hover:opacity-80" 
-                                    style={{ color: theme.colors.secondary.text }}
+                                <Link 
+                                    to="/" 
+                                    className={`transition-all duration-300 hover:opacity-80 ${
+                                        location.pathname === '/' ? 'font-semibold' : ''
+                                    }`}
+                                    style={{ 
+                                        color: location.pathname === '/' 
+                                            ? theme.colors.accent.primary 
+                                            : theme.colors.secondary.text 
+                                    }}
                                     onMouseEnter={(e) => {
                                         e.currentTarget.style.color = theme.colors.accent.primary;
+                                        e.currentTarget.style.textShadow = `
+                                            0 0 5px ${theme.colors.accent.primary},
+                                            0 0 10px ${theme.colors.accent.primary},
+                                            0 0 15px ${theme.colors.accent.primary}
+                                        `;
                                     }}
                                     onMouseLeave={(e) => {
-                                        e.currentTarget.style.color = theme.colors.secondary.text;
+                                        e.currentTarget.style.color = location.pathname === '/' 
+                                            ? theme.colors.accent.primary 
+                                            : theme.colors.secondary.text;
+                                        e.currentTarget.style.textShadow = 'none';
                                     }}
                                 >
                                     Home
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a 
-                                    href="/about" 
-                                    className="transition-colors duration-200 hover:opacity-80" 
-                                    style={{ color: theme.colors.secondary.text }}
+                                <Link 
+                                    to="/my-work" 
+                                    className={`transition-all duration-300 hover:opacity-80 ${
+                                        location.pathname === '/my-work' ? 'font-semibold' : ''
+                                    }`}
+                                    style={{ 
+                                        color: location.pathname === '/my-work' 
+                                            ? theme.colors.accent.primary 
+                                            : theme.colors.secondary.text 
+                                    }}
                                     onMouseEnter={(e) => {
                                         e.currentTarget.style.color = theme.colors.accent.primary;
+                                        e.currentTarget.style.textShadow = `
+                                            0 0 5px ${theme.colors.accent.primary},
+                                            0 0 10px ${theme.colors.accent.primary},
+                                            0 0 15px ${theme.colors.accent.primary}
+                                        `;
                                     }}
                                     onMouseLeave={(e) => {
-                                        e.currentTarget.style.color = theme.colors.secondary.text;
+                                        e.currentTarget.style.color = location.pathname === '/my-work' 
+                                            ? theme.colors.accent.primary 
+                                            : theme.colors.secondary.text;
+                                        e.currentTarget.style.textShadow = 'none';
                                     }}
                                 >
-                                    About
-                                </a>
+                                    My Work
+                                </Link>
                             </li>
                             <li>
                                 <a 
-                                    href="/services" 
-                                    className="transition-colors duration-200 hover:opacity-80" 
+                                    href="/#services" 
+                                    className="transition-all duration-300 hover:opacity-80" 
                                     style={{ color: theme.colors.secondary.text }}
                                     onMouseEnter={(e) => {
                                         e.currentTarget.style.color = theme.colors.accent.primary;
+                                        e.currentTarget.style.textShadow = `
+                                            0 0 5px ${theme.colors.accent.primary},
+                                            0 0 10px ${theme.colors.accent.primary},
+                                            0 0 15px ${theme.colors.accent.primary}
+                                        `;
                                     }}
                                     onMouseLeave={(e) => {
                                         e.currentTarget.style.color = theme.colors.secondary.text;
+                                        e.currentTarget.style.textShadow = 'none';
                                     }}
                                 >
                                     Services
@@ -90,14 +166,20 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
                             </li>
                             <li>
                                 <a 
-                                    href="/contact" 
-                                    className="transition-colors duration-200 hover:opacity-80" 
+                                    href="/#contact" 
+                                    className="transition-all duration-300 hover:opacity-80" 
                                     style={{ color: theme.colors.secondary.text }}
                                     onMouseEnter={(e) => {
                                         e.currentTarget.style.color = theme.colors.accent.primary;
+                                        e.currentTarget.style.textShadow = `
+                                            0 0 5px ${theme.colors.accent.primary},
+                                            0 0 10px ${theme.colors.accent.primary},
+                                            0 0 15px ${theme.colors.accent.primary}
+                                        `;
                                     }}
                                     onMouseLeave={(e) => {
                                         e.currentTarget.style.color = theme.colors.secondary.text;
+                                        e.currentTarget.style.textShadow = 'none';
                                     }}
                                 >
                                     Contact
@@ -144,7 +226,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
             {menuOpen && (
                 <div 
                     className="fixed inset-0 bg-opacity-75 z-40 md:hidden flex items-center justify-center"
-                    style={{ backgroundColor: '#000000d1' }}
+                    style={{ backgroundColor: '#101411c1' }}
                     onClick={() => setMenuOpen(false)}
                 >
                     <div 
@@ -152,24 +234,24 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
                         onClick={(e) => e.stopPropagation()}
                     >
                         <div className="flex flex-col space-y-6 text-center">
-                            <a 
-                                href="/" 
+                            <Link 
+                                to="/" 
                                 className="py-3 text-2xl transition-colors duration-200" 
                                 style={{ color: "white" }}
                                 onClick={() => setMenuOpen(false)}
                             >
                                 Home
-                            </a>
-                            <a 
-                                href="/about" 
+                            </Link>
+                            <Link 
+                                to="/my-work" 
                                 className="py-3 text-2xl transition-colors duration-200" 
                                 style={{ color: "white" }}
                                 onClick={() => setMenuOpen(false)}
                             >
-                                About
-                            </a>
+                                My Work
+                            </Link>
                             <a 
-                                href="/services" 
+                                href="/#services" 
                                 className="py-3 text-2xl transition-colors duration-200" 
                                 style={{ color: "white" }}
                                 onClick={() => setMenuOpen(false)}
@@ -177,7 +259,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
                                 Services
                             </a>
                             <a 
-                                href="/contact" 
+                                href="/#contact" 
                                 className="py-3 text-2xl transition-colors duration-200" 
                                 style={{ color: "white" }}
                                 onClick={() => setMenuOpen(false)}

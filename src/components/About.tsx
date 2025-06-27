@@ -23,9 +23,9 @@ export const About: React.FC = () => {
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Image Section */}
-            <div className="flex justify-center lg:justify-start">
+            <div className="flex justify-center">
               <div className="relative">
-                <div className="w-80 h-80 rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                <div className="w-100 h-100 rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-300">
                   <img 
                     src={profile_picture} 
                     alt="Profile" 

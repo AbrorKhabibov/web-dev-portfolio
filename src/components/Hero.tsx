@@ -20,7 +20,7 @@ export const Hero = () => {
                             className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6"
                             style={{ color: theme.colors.primary.text }}
                         >
-                            Helping <span style={{ color: theme.colors.accent.primary }}>Small Businesses</span> Thrive Online
+                            Helping <span style={{ color: theme.colors.accent.primary }}>Your Businesses</span> Thrive Online
                         </h1>
                         <h3 
                             className="text-4xl md:text-xl lg:text-2xl mb-8"
@@ -37,21 +37,23 @@ export const Hero = () => {
                             Whether you're launching or leveling up, 
                             I'll build a site that works hard for your business.
                         </p>
-                        <button 
-                            className="px-8 py-4 rounded-lg text-lg font-semibold transition-colors duration-300"
-                            style={{ 
-                                backgroundColor: theme.colors.button.primary.bg,
-                                color: theme.colors.button.primary.text 
-                            }}
-                            onMouseEnter={(e) => {
-                                e.currentTarget.style.backgroundColor = theme.colors.button.primary.hover;
-                            }}
-                            onMouseLeave={(e) => {
-                                e.currentTarget.style.backgroundColor = theme.colors.button.primary.bg;
-                            }}
-                        >
-                            View My Work
-                        </button>
+                        <a href='/my-work'>
+                            <button 
+                                className="px-8 py-4 rounded-lg text-lg font-semibold transition-colors duration-300"
+                                style={{ 
+                                    backgroundColor: theme.colors.button.primary.bg,
+                                    color: theme.colors.button.primary.text 
+                                }}
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.style.backgroundColor = theme.colors.button.primary.hover;
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.style.backgroundColor = theme.colors.button.primary.bg;
+                                }}
+                            >
+                                View My Work
+                            </button>
+                        </a>
                     </div>
 
                     {/* Right side - Image */}
