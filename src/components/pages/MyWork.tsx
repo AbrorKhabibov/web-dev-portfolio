@@ -34,13 +34,13 @@ export const MyWork: React.FC = () => {
       title: "NB Bakery",
       description: "Modern e-commerce website for family bakery business",
       longDescription: "Built a comprehensive e-commerce platform for NB Bakery, featuring online ordering, product catalog, custom cake ordering system, and customer management. The site showcases their delicious baked goods and allows customers to place orders for pickup or delivery.",
-      technologies: ["React", "Next.js", "Tailwind CSS", "Stripe", "Sanity CMS", "Vercel"],
+      technologies: ["WordPress", "WooCommerce", "CSS3", "Square", "GoDaddy Hosting"],
       url: "https://www.nbbakery.ca/",
       category: "E-commerce",
       client: "NB Bakery",
       image: nbbakeryImage,
       testimonial: {
-        message: "Abror transformed our small bakery into a professional online presence. The website perfectly captures our brand and has significantly increased our online orders. The custom cake ordering system is exactly what we needed!",
+        message: "Abror transformed our small bakery into a professional online presence. The website perfectly captures our brand and has significantly increased our online orders. The samosa online ordering system is exactly what we needed!",
         author: "Nodira & Bakhodir Khabibov",
         position: "Owners, NB Bakery"
       },

@@ -165,10 +165,16 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
                                 </a>
                             </li>
                             <li>
-                                <a 
-                                    href="/#contact" 
-                                    className="transition-all duration-300 hover:opacity-80" 
-                                    style={{ color: theme.colors.secondary.text }}
+                                <Link 
+                                    to="/contact" 
+                                    className={`transition-all duration-300 hover:opacity-80 ${
+                                        location.pathname === '/my-work' ? 'font-semibold' : ''
+                                    }`}
+                                    style={{ 
+                                        color: location.pathname === '/my-work' 
+                                            ? theme.colors.accent.primary 
+                                            : theme.colors.secondary.text 
+                                    }}
                                     onMouseEnter={(e) => {
                                         e.currentTarget.style.color = theme.colors.accent.primary;
                                         e.currentTarget.style.textShadow = `
@@ -178,12 +184,14 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
                                         `;
                                     }}
                                     onMouseLeave={(e) => {
-                                        e.currentTarget.style.color = theme.colors.secondary.text;
+                                        e.currentTarget.style.color = location.pathname === '/my-work' 
+                                            ? theme.colors.accent.primary 
+                                            : theme.colors.secondary.text;
                                         e.currentTarget.style.textShadow = 'none';
                                     }}
                                 >
                                     Contact
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                         <ThemeToggle />
@@ -258,14 +266,14 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
                             >
                                 Services
                             </a>
-                            <a 
-                                href="/#contact" 
+                            <Link
+                                to="/contact" 
                                 className="py-3 text-2xl transition-colors duration-200" 
                                 style={{ color: "white" }}
                                 onClick={() => setMenuOpen(false)}
                             >
                                 Contact
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>

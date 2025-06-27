@@ -173,8 +173,8 @@ export const Footer: React.FC = () => {
                   </a>
                 </li>
                 <li>
-                  <a 
-                    href="/#contact" 
+                  <Link 
+                    to="/contact" 
                     className="transition-colors duration-200"
                     style={{ color: theme.colors.neutral.text }}
                     onMouseEnter={(e) => {
@@ -185,7 +185,7 @@ export const Footer: React.FC = () => {
                     }}
                   >
                     Contact
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

@@ -11,6 +11,8 @@ import { Services } from './components/Services';
 import { About } from './components/About';
 import { Footer } from './components/Footer';
 import { MyWork } from './components/pages/MyWork';
+import { Contact } from './components/pages/Contact';
+import { ScrollToTop } from './components/ScrollToTop';
 
 // Home page component
 const HomePage = () => (
@@ -32,6 +34,7 @@ function App() {
   return (
     <ThemeProvider>
       <Router>
+        <ScrollToTop />
         <div className="min-h-screen transition-colors duration-300" style={{ backgroundColor: 'var(--color-primary-bg)', color: 'var(--color-primary-text)' }}>
           {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
           <div className={`transition-opacity duration-700 ${!loading ? "opacity-100" : "opacity-0"}`}>
@@ -39,6 +42,7 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/my-work" element={<MyWork />} />
+              <Route path="/contact" element={<Contact />} />
             </Routes>
           </div>
         </div>
