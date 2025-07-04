@@ -3,29 +3,13 @@ import { LoadingScreen } from './components/LoadingScreen'
 import "./index.css"
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import WaveSeparator from './components/WaveSeparator';
+import { Navbar } from './components/reusables/Navbar';
 import { ThemeProvider } from './contexts/ThemeContext';
-import { Services } from './components/Services';
-import { About } from './components/About';
-import { Footer } from './components/Footer';
+import { HomePage } from './components/pages/Home';
 import { MyWork } from './components/pages/MyWork';
 import { Contact } from './components/pages/Contact';
+import { Services } from './components/pages/Services';
 import { ScrollToTop } from './components/ScrollToTop';
-
-// Home page component
-const HomePage = () => (
-  <>
-    <Hero />
-    <WaveSeparator topColor="var(--color-primary-bg)" botColor="var(--color-secondary-bg)" />
-    <Services />
-    <WaveSeparator topColor="var(--color-secondary-bg)" botColor="var(--color-primary-bg)" />
-    <About />
-    <WaveSeparator topColor="var(--color-primary-bg)" botColor="var(--color-secondary-bg)" />
-    <Footer />
-  </>
-);
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -43,6 +27,7 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/my-work" element={<MyWork />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/services" element={<Services />} />
             </Routes>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import laptop_phone from '../assets/laptop-phone.png';
-import { useTheme } from '../contexts/ThemeContext';
-import { AnimatedBackground } from './AnimatedBackground';
+import laptop_phone from '../../../assets/laptop-phone.png';
+import { useTheme } from '../../../contexts/ThemeContext';
+import { AnimatedBackground } from '../../reusables/AnimatedBackground';
 
 export const Hero = () => {
     const { theme } = useTheme();

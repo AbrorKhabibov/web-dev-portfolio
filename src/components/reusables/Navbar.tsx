@@ -1,5 +1,5 @@
-import { useTheme } from '../contexts/ThemeContext';
-import { ThemeToggle } from './ThemeToggle';
+import { useTheme } from '../../contexts/ThemeContext';
+import { ThemeToggle } from '../ThemeToggle';
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 

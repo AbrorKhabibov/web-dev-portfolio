@@ -1,7 +1,7 @@
 import React from 'react';
-import profile_picture from '../assets/profile-picture.jpg'; 
-import { useTheme } from '../contexts/ThemeContext';
-import { AnimatedBackground } from './AnimatedBackground';
+import profile_picture from '../../../assets/profile-picture.jpg'; 
+import { useTheme } from '../../../contexts/ThemeContext';
+import { AnimatedBackground } from '../../reusables/AnimatedBackground';
 
 export const About: React.FC = () => {
   const { theme } = useTheme();
