@@ -145,7 +145,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
                             </li>
                             <li>
                                 <a 
-                                    href="/#services" 
+                                    href="/services" 
                                     className="transition-all duration-300 hover:opacity-80" 
                                     style={{ color: theme.colors.secondary.text }}
                                     onMouseEnter={(e) => {
@@ -259,7 +259,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
                                 My Work
                             </Link>
                             <a 
-                                href="/#services" 
+                                href="/services" 
                                 className="py-3 text-2xl transition-colors duration-200" 
                                 style={{ color: "white" }}
                                 onClick={() => setMenuOpen(false)}
