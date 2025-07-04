@@ -39,39 +39,39 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
                             to="/" 
                             className="flex items-center space-x-2 transition-all duration-300"
                             style={{ color: theme.colors.secondary.text }}
-                            onMouseEnter={(e) => {
-                                e.currentTarget.style.textShadow = `
-                                    0 0 5px ${theme.colors.accent.primary},
-                                    0 0 10px ${theme.colors.accent.primary},
-                                    0 0 15px ${theme.colors.accent.primary},
-                                    0 0 20px ${theme.colors.accent.primary},
-                                    0 0 35px ${theme.colors.accent.primary},
-                                    0 0 40px ${theme.colors.accent.primary}
-                                `;
-                                e.currentTarget.style.transform = 'scale(1.05)';
-                                e.currentTarget.style.color = theme.colors.accent.primary;
+                            // onMouseEnter={(e) => {
+                            //     e.currentTarget.style.textShadow = `
+                            //         0 0 5px ${theme.colors.accent.primary},
+                            //         0 0 10px ${theme.colors.accent.primary},
+                            //         0 0 15px ${theme.colors.accent.primary},
+                            //         0 0 20px ${theme.colors.accent.primary},
+                            //         0 0 35px ${theme.colors.accent.primary},
+                            //         0 0 40px ${theme.colors.accent.primary}
+                            //     `;
+                            //     e.currentTarget.style.transform = 'scale(1.05)';
+                            //     e.currentTarget.style.color = theme.colors.accent.primary;
                                 
-                                const img = e.currentTarget.querySelector('img');
-                                if (img) {
-                                    img.style.filter = `
-                                        brightness(1.2)
-                                        drop-shadow(0 0 5px ${theme.colors.accent.primary})
-                                        drop-shadow(0 0 10px ${theme.colors.accent.primary})
-                                        drop-shadow(0 0 15px ${theme.colors.accent.primary})
-                                        drop-shadow(0 0 20px ${theme.colors.accent.primary})
-                                    `;
-                                }
-                            }}
-                            onMouseLeave={(e) => {
-                                e.currentTarget.style.textShadow = 'none';
-                                e.currentTarget.style.transform = 'scale(1)';
-                                e.currentTarget.style.color = theme.colors.secondary.text;
+                            //     const img = e.currentTarget.querySelector('img');
+                            //     if (img) {
+                            //         img.style.filter = `
+                            //             brightness(1.2)
+                            //             drop-shadow(0 0 5px ${theme.colors.accent.primary})
+                            //             drop-shadow(0 0 10px ${theme.colors.accent.primary})
+                            //             drop-shadow(0 0 15px ${theme.colors.accent.primary})
+                            //             drop-shadow(0 0 20px ${theme.colors.accent.primary})
+                            //         `;
+                            //     }
+                            // }}
+                            // onMouseLeave={(e) => {
+                            //     e.currentTarget.style.textShadow = 'none';
+                            //     e.currentTarget.style.transform = 'scale(1)';
+                            //     e.currentTarget.style.color = theme.colors.secondary.text;
                                 
-                                const img = e.currentTarget.querySelector('img');
-                                if (img) {
-                                    img.style.filter = 'none';
-                                }
-                            }}
+                            //     const img = e.currentTarget.querySelector('img');
+                            //     if (img) {
+                            //         img.style.filter = 'none';
+                            //     }
+                            // }}
                         >
                             <img 
                                 src="/logo.png" 
@@ -168,10 +168,10 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
                                 <Link 
                                     to="/contact" 
                                     className={`transition-all duration-300 hover:opacity-80 ${
-                                        location.pathname === '/my-work' ? 'font-semibold' : ''
+                                        location.pathname === '/contact' ? 'font-semibold' : ''
                                     }`}
                                     style={{ 
-                                        color: location.pathname === '/my-work' 
+                                        color: location.pathname === '/contact' 
                                             ? theme.colors.accent.primary 
                                             : theme.colors.secondary.text 
                                     }}
@@ -184,7 +184,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
                                         `;
                                     }}
                                     onMouseLeave={(e) => {
-                                        e.currentTarget.style.color = location.pathname === '/my-work' 
+                                        e.currentTarget.style.color = location.pathname === '/contact' 
                                             ? theme.colors.accent.primary 
                                             : theme.colors.secondary.text;
                                         e.currentTarget.style.textShadow = 'none';
