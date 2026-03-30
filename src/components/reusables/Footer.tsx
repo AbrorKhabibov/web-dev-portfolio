@@ -200,9 +200,6 @@ export const Footer: React.FC = () => {
                   <span style={{ color: theme.colors.neutral.text }}>Web Development</span>
                 </li>
                 <li>
-                  <span style={{ color: theme.colors.neutral.text }}>UI/UX Design</span>
-                </li>
-                <li>
                   <span style={{ color: theme.colors.neutral.text }}>E-commerce</span>
                 </li>
                 <li>

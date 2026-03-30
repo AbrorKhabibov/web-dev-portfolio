@@ -78,7 +78,7 @@ export const Services: React.FC = () => {
         "1 month support"
       ],
       price: "$399",
-      icon: "🌱"
+      icon: ""
     },
     {
       title: "Medium",
@@ -92,7 +92,7 @@ export const Services: React.FC = () => {
         "Performance optimization"
       ],
       price: "$899",
-      icon: "🚀"
+      icon: ""
     },
     {
       title: "Advanced",
@@ -107,7 +107,7 @@ export const Services: React.FC = () => {
         "API development"
       ],
       price: "$2499",
-      icon: "⚡"
+      icon: ""
     }
   ];
 

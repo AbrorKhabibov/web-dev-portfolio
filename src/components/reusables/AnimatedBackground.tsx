@@ -5,251 +5,116 @@ interface AnimatedBackgroundProps {
   variant?: 'geometric' | 'particles' | 'waves' | 'grid';
 }
 
-export const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ variant = 'geometric' }) => {
+/*
+ * Each variant is a single <div> with layered CSS gradients.
+ * One slow opacity animation max per variant — everything runs on the
+ * compositor so it never blocks the main thread or hurts INP.
+ */
+
+const BASE: React.CSSProperties = {
+  position: 'absolute',
+  inset: 0,
+  overflow: 'hidden',
+  pointerEvents: 'none',
+  contain: 'strict',
+};
+
+const AnimatedBackgroundInner: React.FC<AnimatedBackgroundProps> = ({ variant = 'geometric' }) => {
   const { theme } = useTheme();
+  const c1 = theme.colors.accent.primary;
+  const c2 = theme.colors.accent.hover;
 
   if (variant === 'geometric') {
     return (
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Large circle */}
-        <div 
-          className="absolute w-48 h-48 rounded-full opacity-5 animate-pulse"
-          style={{ 
-            backgroundColor: theme.colors.accent.primary,
-            top: '10%',
-            right: '5%',
-            animationDuration: '4s'
-          }}
-        />
-        
-        {/* Medium squares */}
-        <div 
-          className="absolute w-32 h-32 opacity-25 animate-bounce"
-          style={{ 
-            backgroundColor: theme.colors.accent.hover,
-            top: '60%',
-            left: '10%',
-            transform: 'rotate(45deg)',
-            animationDuration: '6s'
-          }}
-        />
-        
-        <div 
-          className="absolute w-24 h-24 rounded-full opacity-15 animate-ping"
-          style={{ 
-            backgroundColor: theme.colors.accent.primary,
-            bottom: '20%',
-            right: '15%',
-            animationDuration: '3s'
-          }}
-        />
-        
-        {/* Small floating elements */}
-        <div 
-          className="absolute w-16 h-16 opacity-12"
-          style={{ 
-            backgroundColor: theme.colors.accent.hover,
-            top: '30%',
-            left: '20%',
-            transform: 'rotate(30deg)',
-            animation: 'float 8s ease-in-out infinite'
-          }}
-        />
-        
-        <div 
-          className="absolute w-20 h-20 rounded-full opacity-12"
-          style={{ 
-            backgroundColor: theme.colors.accent.primary,
-            top: '70%',
-            right: '30%',
-            animation: 'float 10s ease-in-out infinite reverse'
-          }}
-        />
-      </div>
+      <div
+        style={{
+          ...BASE,
+          background: `
+            radial-gradient(circle 220px at 90% 12%, ${c1}0d 0%, transparent 100%),
+            radial-gradient(circle 160px at 12% 62%, ${c2}12 0%, transparent 100%),
+            radial-gradient(circle 120px at 82% 78%, ${c1}0a 0%, transparent 100%),
+            radial-gradient(circle 80px  at 22% 32%, ${c2}0a 0%, transparent 100%),
+            radial-gradient(circle 100px at 68% 72%, ${c1}0a 0%, transparent 100%)
+          `,
+          animation: 'bg-breathe 8s ease-in-out infinite',
+          willChange: 'opacity',
+        }}
+      />
     );
   }
 
   if (variant === 'particles') {
     return (
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(15)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-4 h-4 rounded-full opacity-20"
-            style={{
-              backgroundColor: i % 2 === 0 ? theme.colors.accent.primary : theme.colors.accent.hover,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `particle-float ${3 + Math.random() * 4}s ease-in-out infinite`,
-              animationDelay: `${Math.random() * 2}s`
-            }}
-          />
-        ))}
-      </div>
+      <div
+        style={{
+          ...BASE,
+          background: `
+            radial-gradient(circle 6px at 12% 8%,  ${c1}33 0%, transparent 100%),
+            radial-gradient(circle 5px at 45% 22%, ${c2}33 0%, transparent 100%),
+            radial-gradient(circle 7px at 78% 15%, ${c1}33 0%, transparent 100%),
+            radial-gradient(circle 5px at 25% 55%, ${c2}33 0%, transparent 100%),
+            radial-gradient(circle 6px at 60% 70%, ${c1}33 0%, transparent 100%),
+            radial-gradient(circle 5px at 88% 45%, ${c2}33 0%, transparent 100%),
+            radial-gradient(circle 7px at 35% 82%, ${c1}33 0%, transparent 100%),
+            radial-gradient(circle 5px at 70% 90%, ${c2}33 0%, transparent 100%)
+          `,
+          animation: 'bg-breathe 6s ease-in-out infinite',
+          willChange: 'opacity',
+        }}
+      />
     );
   }
 
   if (variant === 'waves') {
     return (
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Animated waves */}
-        <div 
-          className="absolute inset-0"
-          style={{
-            background: `linear-gradient(45deg, transparent 30%, ${theme.colors.accent.primary}10 50%, transparent 70%)`,
-            animation: 'wave-move 8s ease-in-out infinite'
-          }}
-        />
-        <div 
-          className="absolute inset-0"
-          style={{
-            background: `linear-gradient(-45deg, transparent 40%, ${theme.colors.accent.hover}08 60%, transparent 80%)`,
-            animation: 'wave-move 12s ease-in-out infinite reverse'
-          }}
-        />
-        <div 
-          className="absolute inset-0"
-          style={{
-            background: `radial-gradient(circle at 20% 50%, ${theme.colors.accent.primary}15 20%, transparent 50%)`,
-            animation: 'wave-pulse 10s ease-in-out infinite'
-          }}
-        />
-        <div 
-          className="absolute inset-0"
-          style={{
-            background: `radial-gradient(circle at 80% 30%, ${theme.colors.accent.hover}12 15%, transparent 40%)`,
-            animation: 'wave-pulse 14s ease-in-out infinite reverse'
-          }}
-        />
-      </div>
+      <div
+        style={{
+          ...BASE,
+          background: `
+            linear-gradient(45deg,  transparent 30%, ${c1}10 50%, transparent 70%),
+            linear-gradient(-45deg, transparent 40%, ${c2}08 60%, transparent 80%),
+            radial-gradient(ellipse 60% 40% at 20% 50%, ${c1}12 0%, transparent 100%),
+            radial-gradient(ellipse 50% 35% at 80% 30%, ${c2}0c 0%, transparent 100%)
+          `,
+          animation: 'bg-breathe 10s ease-in-out infinite',
+          willChange: 'opacity',
+        }}
+      />
     );
   }
 
   if (variant === 'grid') {
     return (
-      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
-        {/* Animated grid pattern */}
-        <div 
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              linear-gradient(${theme.colors.accent.primary}60 1px, transparent 1px),
-              linear-gradient(90deg, ${theme.colors.accent.primary}60 1px, transparent 1px)
-            `,
-            backgroundSize: '60px 60px',
-            animation: 'grid-move 20s linear infinite'
-          }}
-        />
-        
-        {/* Moving grid overlay */}
-        <div 
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              linear-gradient(${theme.colors.accent.hover}80 1px, transparent 1px),
-              linear-gradient(90deg, ${theme.colors.accent.hover}80 1px, transparent 1px)
-            `,
-            backgroundSize: '40px 40px',
-            animation: 'grid-move-reverse 15s linear infinite'
-          }}
-        />
-        
-        {/* Floating dots on grid intersections */}
-        {[...Array(8)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-2 h-2 rounded-full"
-            style={{
-              backgroundColor: theme.colors.accent.primary,
-              left: `${15 + (i * 12)}%`,
-              top: `${20 + (i * 8)}%`,
-              animation: `dot-glow ${2 + i * 0.5}s ease-in-out infinite`,
-              animationDelay: `${i * 0.8}s`
-            }}
-          />
-        ))}
-      </div>
+      <div
+        style={{
+          ...BASE,
+          opacity: 0.15,
+          backgroundImage: `
+            linear-gradient(${c1}40 1px, transparent 1px),
+            linear-gradient(90deg, ${c1}40 1px, transparent 1px)
+          `,
+          backgroundSize: '60px 60px',
+        }}
+      />
     );
   }
 
   return null;
 };
 
-// Add these keyframes to your CSS
+export const AnimatedBackground = React.memo(AnimatedBackgroundInner);
+
+// Single, ultra-light keyframe — opacity only (compositor property)
 const animationStyles = `
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-20px) rotate(180deg);
-  }
-}
-
-@keyframes particle-float {
-  0%, 100% {
-    transform: translateY(0px) scale(1);
-    opacity: 0.2;
-  }
-  50% {
-    transform: translateY(-30px) scale(1.2);
-    opacity: 0.4;
-  }
-}
-
-@keyframes wave-move {
-  0%, 100% {
-    transform: translateX(-50px) translateY(-25px) rotate(0deg);
-  }
-  50% {
-    transform: translateX(50px) translateY(25px) rotate(180deg);
-  }
-}
-
-@keyframes wave-pulse {
-  0%, 100% {
-    transform: scale(1) rotate(0deg);
-    opacity: 0.3;
-  }
-  50% {
-    transform: scale(1.2) rotate(180deg);
-    opacity: 0.1;
-  }
-}
-
-@keyframes grid-move {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(60px, 60px);
-  }
-}
-
-@keyframes grid-move-reverse {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(-40px, -40px);
-  }
-}
-
-@keyframes dot-glow {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.4;
-  }
-  50% {
-    transform: scale(1.5);
-    opacity: 0.8;
-  }
+@keyframes bg-breathe {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.6; }
 }
 `;
 
-// Inject styles
-if (typeof document !== 'undefined') {
+if (typeof document !== 'undefined' && !document.getElementById('animated-bg-styles')) {
   const style = document.createElement('style');
+  style.id = 'animated-bg-styles';
   style.textContent = animationStyles;
   document.head.appendChild(style);
 }
